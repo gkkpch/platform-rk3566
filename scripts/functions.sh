@@ -61,7 +61,7 @@ get_kernel_sources() {
     pushd ${KERNELTARGET} 1> /dev/null 2>&1
       log "Already present. Cleaning and pull..."
       git clean -qdfx
-      git reset --hard HEAD~1 1> /dev/null 2>&1
+      git reset --hard HEAD~0 1> /dev/null 2>&1
       git pull
     popd 1> /dev/null 2>&1
   fi
@@ -71,8 +71,7 @@ get_kernel_sources() {
   if [ -f ${C}/board/${KERNELCONFIG} ]; then
     cp ${C}/board/${KERNELCONFIG} ${KERNELTARGET}/arch/arm64/configs/${KERNELCONFIG}
   else
-    log "Default kernel configuration not found, aborting" "err"
-    exit 255
+    log "Default kernel configuration not used" "info"
   fi  
   
 }
@@ -87,7 +86,7 @@ apply_existing_patches() {
     for f in ${PATCHDIR}/${KERNELTARGET}/*.patch
       do
       log "Appying $f"
-      git apply $f 1> /dev/null 2>&1
+      git apply $f 
     done
   fi
   log "Existing patches applied successfully" "okay"
@@ -163,7 +162,7 @@ populate_platform_m1s() {
 
   log "Saving kernel"
   cd ${C}/${KERNELTARGET} 
-  cp arch/arm64/configs/${KERNELCONFIG} "${C}"/board/${KERNELCONFIG}
+  cp arch/arm64/configs/${KERNELCONFIG} "${C}"/board/${KERNELCONFIG}_latest
   cp arch/arm64/boot/Image "${C}/${T}"/boot
   kver=`make kernelrelease`-`date +%Y.%m.%d-%H.%M`
   cp arch/arm64/configs/${KERNELCONFIG}  "${C}/${T}"/boot/config-${kver}

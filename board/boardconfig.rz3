@@ -1,4 +1,5 @@
 #!/bin/bash
+COMPILE_UBOOT="no"
 COMPILE_KERNEL="yes"
 CONFIGURE_KERNEL="no"
 KERNELPATCHES="no"
