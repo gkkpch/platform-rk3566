@@ -1,0 +1,24 @@
+#!/bin/bash
+COMPILE_KERNEL="yes"
+CONFIGURE_KERNEL="no"
+KERNELPATCHES="no"
+PATCHDIR="${C}"/patches
+
+# Kernel source: "Borrowing" Hardkernel's odroidm1-5.10.y
+KERNELSOURCE="https://github.com/hardkernel/linux.git"
+KERNELBRANCH="odroidm1-5.10.y"
+KERNELTARGET="rk3566-5.10.y"
+KERNELCONFIG="odroidm1-volumio_defconfig"
+
+# Pre-compiled u-boot package from Radxa
+UBOOTSOURCE="radxa-debs/u-boot-latest_2023.10-1_arm64.deb"
+
+T="radxazero3"
+D="rk3566-radxa-zero3.dtb"
+
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-linux-gnu-
+export PATH=/opt/toolchains/gcc-linaro-7.4.1-2019.02-x86_64_aarch64-linux-gnu/bin:/opt/toolchains/xpack-riscv-none-embed-gcc-10.2.0-1.2/bin:$PATH
+
+export INSTALL_MOD_STRIP=1
+export LOCALVERSION=-volumio

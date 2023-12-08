@@ -1,0 +1,9 @@
+verbosity=4
+earlycon=on
+overlay_prefix=
+fdtfile=rockchip/rk3566-radxa-zero3.dtb
+console=serial
+usbstoragequirks=0x2537:0x1066:u,0x2537:0x1068:u
+extraargs=imgpart=UUID= bootpart=UUID= datapart=UUID= bootconfig=armbianEnv.txt imgfile=/volumio_current.sqsh net.ifnames=0 hwdevice=radxazero3w
+overlays=radxa-zero3-disabled-ethernet radxa-zero3-external-antenna
+user_overlays=

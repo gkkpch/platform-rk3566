@@ -1,0 +1,35 @@
+#!/bin/bash
+COMPILE_UBOOT="yes"
+COMPILE_KERNEL="yes"
+CONFIGURE_KERNEL="no"
+KERNELPATCHES="no"
+PATCHDIR="${C}"/patches
+
+# Kernel source: Hardkernel's odroidm1-5.10.y
+KERNELSOURCE="https://github.com/hardkernel/linux.git"
+KERNELBRANCH="odroidm1-5.10.y"
+KERNELTARGET="odroidm1-5.10.y"
+KERNELCONFIG="odroidm1-volumio_defconfig"
+
+UBOOTSOURCE="https://github.com/hardkernel/u-boot.git"
+UBOOTBRANCH="odroidm1-v2017.09"
+
+T="odroidm1s"
+D="rk3566-odroid-m1s.dtb"
+
+PATCHDIR="${C}"/patches
+KERNELCONFIG="odroidm1-volumio_defconfig"
+
+
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-linux-gnu-
+export PATH=/opt/toolchains/gcc-linaro-7.4.1-2019.02-x86_64_aarch64-linux-gnu/bin:/opt/toolchains/xpack-riscv-none-embed-gcc-10.2.0-1.2/bin:$PATH
+
+export INSTALL_MOD_STRIP=1
+export LOCALVERSION=-volumio
+
+
+
+
+# Pre-compiled u-boot package from Radxa
+UBOOTSOURCE="radxa-debs/u-boot-latest_2023.10-1_arm64.deb"
