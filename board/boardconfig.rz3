@@ -2,7 +2,7 @@
 COMPILE_UBOOT="no"
 COMPILE_KERNEL="yes"
 CONFIGURE_KERNEL="no"
-KERNELPATCHES="no"
+KERNELPATCHES="yes"
 PATCHDIR="${C}"/patches
 
 # Kernel source: "Borrowing" Hardkernel's odroidm1-5.10.y

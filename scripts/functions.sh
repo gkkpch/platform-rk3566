@@ -107,7 +107,7 @@ create_custom_patches() {
     for f in ${PATCHDIR}/${KERNELTARGET}/*.patch
       do
       log "Backup $f"
-      cp ${f} ${f}_$(openssl rand -base64 48 | cut -c1-6) 1> /dev/null 2>&1
+      cp ${f} ${f}_$(date +%Y.%m.%d-%H.%M) 1> /dev/null 2>&1
     done
     log "Now ready for additional sources and patches" "Info"
     read -p "Press [Enter] key to resume ..."
@@ -220,7 +220,7 @@ populate_platform_rz3() {
 
   log "Saving kernel"
   cd ${C}/${KERNELTARGET} 
-  cp arch/arm64/configs/${KERNELCONFIG} "${C}"/board/${KERNELCONFIG}
+  cp arch/arm64/configs/${KERNELCONFIG} "${C}"/board/${KERNELCONFIG}_latest
   cp arch/arm64/boot/Image "${C}/${T}"/boot
   kver=`make kernelrelease`-`date +%Y.%m.%d-%H.%M`
   cp arch/arm64/configs/${KERNELCONFIG}  "${C}/${T}"/boot/config-${kver}
